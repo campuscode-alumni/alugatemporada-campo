@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User can view property details' do
+feature 'User view property details' do
   scenario 'successfuly' do
     property = Property.create(
                 title: 'Casa de Campo',
@@ -18,8 +18,7 @@ feature 'User can view property details' do
                 daily_rate: 200.00
               )
 
-    visit root_path
-    click_on property.title
+    visit property_path(property)
 
     expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('h3', text: "Descrição:")
@@ -39,7 +38,7 @@ feature 'User can view property details' do
   end
 
   scenario 'and try to visit an invalid property' do
-    visit property_path(x)
+    visit property_path(-1)
 
     expect(page).to have_content('Imóvel não encontrado')
     expect(current_path).to eq(root_path)
