@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180306233055) do
     t.boolean "allow_pets"
     t.boolean "allow_smokers"
     t.integer "rooms"
+    t.string "main_photo"
   end
 
 end

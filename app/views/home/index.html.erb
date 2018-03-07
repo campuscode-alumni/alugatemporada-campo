@@ -1,3 +1,10 @@
+<%= @message %>
 <% @properties.each do |property| %>
-  <%= link_to property.title, property_path(property) %>
+  <div>
+    <h1><%= link_to property.title, property_path(property) %></h1>
+    <h3><%= property.main_photo %></h3>
+    <p>Localização: <%= property.property_location %></p>
+    <p>Valor base: <%= property.daily_rate %>
+    <p>Numero máximo de hospedes:<%= property.maximum_guests %></p>
+  </div>
 <% end %>
