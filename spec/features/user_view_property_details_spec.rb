@@ -38,7 +38,10 @@ feature 'User can view property details' do
     expect(page).to have_link('Voltar', href: root_path)
   end
 
-  scenario '' do
-    # Forçar um link inválido
+  scenario 'and try to visit an invalid property' do
+    visit property_path(x)
+
+    expect(page).to have_content('Imóvel não encontrado')
+    expect(current_path).to eq(root_path)
   end
 end
