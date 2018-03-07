@@ -25,9 +25,19 @@ feature 'User vist home#index' do
 
     expect(page).to have_content("Não existe nenhum
                       imóvel cadastrado no momento")
-
   end
 
+  scenario 'see one property' do
+    prop = create_properties('Casa de campo')
+
+    visit root_path
+
+    expect(page).to have_css('h1', text: prop.title)
+    expect(page).to have_css('p', text: prop.property_location)
+    expect(page).to have_css('p', text: prop.maximum_guests)
+    expect(page).to have_css('p', text: prop.daily_rate)
+    expect(page).to have_css('h3', text: prop.main_photo)
+  end
 
   def create_properties(title)
     Property.create(title: title,
