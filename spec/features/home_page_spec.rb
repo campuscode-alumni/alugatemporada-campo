@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'User see last 10 properties' do
-  scenario 'successfully' do
+feature 'User vist home#index' do
+  scenario 'see last 10' do
     prop1 = create_properties('Casa de campo')
     create_properties('Casa de campo')
     create_properties('Casa de campo')
@@ -19,6 +19,15 @@ feature 'User see last 10 properties' do
     expect(page).to have_css('h1', text: prop1.title)
     expect(page).to_not have_css('h1', text: prop2.title)
   end
+
+  scenario 'no results' do
+    visit root_path
+
+    expect(page).to have_content("Não existe nenhum
+                      imóvel cadastrado no momento")
+
+  end
+
 
   def create_properties(title)
     Property.create(title: title,
