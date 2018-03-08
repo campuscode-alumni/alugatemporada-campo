@@ -1,0 +1,58 @@
+<%= form_for @property do |f| %>
+  <div>
+    <%= f.label :title, 'Título' %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.label :property_location, 'Localização' %>
+    <%= f.text_field :property_location %>
+  </div>
+  <div>
+    <%= f.label :neighborhood, 'Bairro' %>
+    <%= f.text_field :neighborhood %>
+  </div>
+  <div>
+    <%= f.label :main_photo, 'Foto principal' %>
+    <%= f.text_field :main_photo %>
+  </div>
+  <div>
+    <%= f.label :rooms, 'Quantidade de cômodos' %>
+    <%= f.text_field :rooms %>
+  </div>
+  <div>
+    <%= f.label :rent_purpose, 'Finalidade' %>
+    <%= f.text_field :rent_purpose %>
+  </div>
+  <div>
+    <%= f.label :maximum_guests, 'Máximo de pessoas' %>
+    <%= f.text_field :maximum_guests %>
+  </div>
+  <div>
+    <%= f.label :minimum_rent, 'Mínimo de dias para locação' %>
+    <%= f.text_field :minimum_rent %>
+  </div>
+  <div>
+    <%= f.label :maximum_rent, 'Máximo de dias para locação' %>
+    <%= f.text_field :maximum_rent %>
+  </div>
+  <div>
+    <%= f.label :daily_rate, 'Preço da diária' %>
+    <%= f.text_field :daily_rate %>
+  </div>
+  <div>
+    <h3>Condições permitidas</h3>
+    <%= f.check_box(:accessibility) %>
+    <%= f.label :accessibility, 'Possui acessibilidade' %>
+    <br>
+    <%= f.check_box(:allow_pets) %>
+    <%= f.label :allow_pets, 'Aceita animais' %>
+    <br>
+    <%= f.check_box(:allow_smokers) %>
+    <%= f.label :allow_smokers, 'Aceita fumantes' %>
+  </div>
+  <%= f.submit 'Enviar' %>
+<% end %>
