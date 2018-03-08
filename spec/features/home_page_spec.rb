@@ -2,17 +2,18 @@ require 'rails_helper'
 
 feature 'User vist home#index' do
   scenario 'see last 10' do
-    prop1 = create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    create_properties('Casa de campo')
-    prop2 = create_properties('Old')
+    local = PropertyLocation.create(name: 'Santos')
+    prop1 = create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    create_properties('Casa de campo', local)
+    prop2 = create_properties('Old', local)
 
     visit root_path
 
@@ -28,23 +29,24 @@ feature 'User vist home#index' do
   end
 
   scenario 'see one property' do
-    prop = create_properties('Casa de campo')
+    local = PropertyLocation.create(name: 'Santos')
+    prop = create_properties('Casa de campo', local)
 
     visit root_path
 
     expect(page).to have_css('h1', text: prop.title)
-    expect(page).to have_css('p', text: prop.property_location)
+    expect(page).to have_css('p', text: prop.property_location.name)
     expect(page).to have_css('p', text: prop.maximum_guests)
     expect(page).to have_css('p', text: prop.daily_rate)
     expect(page).to have_css('h3', text: prop.main_photo)
   end
 
-  def create_properties(title)
+  def create_properties(title, local)
     Property.create(title: title,
       main_photo: 'casa_de_campo.jpg',
       daily_rate: 200,
       maximum_guests: 10,
-      property_location: 'Campos de Jordão'
+      property_location: local
     )
   end
 end

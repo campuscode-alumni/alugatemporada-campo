@@ -2,7 +2,8 @@
 
 <%= form_tag(search_properties_path, method: 'get') do %>
   <%= label_tag(:q, "Localização") %>
-  <%= text_field_tag :q %>
+  <%#= text_field_tag :q %>
+  <%= select_tag(:q, options_for_select(PropertyLocation.all.map{|l| [l.name, l.id]})) %>
   <%= submit_tag "Filtrar" %>
 <% end %>
 
@@ -10,7 +11,7 @@
   <div>
     <h1><%= property.title %></h1>
     <h3><%= property.main_photo %></h3>
-    <p>Localização: <%= property.property_location %></p>
+    <p>Localização: <%= property.property_location.name %></p>
     <p>Valor base: <%= property.daily_rate %>
     <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
   </div>
