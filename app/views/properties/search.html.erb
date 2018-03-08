@@ -1,0 +1,13 @@
+<% if @properties.empty? %>
+  <h1>Nenhum resultado encontrado</h1>
+<% else %>
+  <% @properties.each do |property| %>
+    <div>
+      <h1><%= property.title %></h1>
+      <h3><%= property.main_photo %></h3>
+      <p>Localização: <%= property.property_location %></p>
+      <p>Valor base: <%= property.daily_rate %>
+      <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
+    </div>
+  <% end %>
+<% end %>

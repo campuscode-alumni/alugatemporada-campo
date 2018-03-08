@@ -1,10 +1,17 @@
 <%= @message %>
-<%= @properties.each do |property| %>
+
+<%= form_tag(search_properties_path, method: 'get') do %>
+  <%= label_tag(:q, "Localização") %>
+  <%= text_field_tag :q %>
+  <%= submit_tag "Filtrar" %>
+<% end %>
+
+<% @properties.each do |property| %>
   <div>
     <h1><%= property.title %></h1>
     <h3><%= property.main_photo %></h3>
     <p>Localização: <%= property.property_location %></p>
     <p>Valor base: <%= property.daily_rate %>
-    <p>Numero máximo de hospedes:<%= property.maximum_guests %></p>
-</div>
+    <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
+  </div>
 <% end %>

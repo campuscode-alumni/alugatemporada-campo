@@ -42,8 +42,8 @@ feature 'User vist home#index' do
   def create_properties(title)
     Property.create(title: title,
       main_photo: 'casa_de_campo.jpg',
-      daily_rate: 200.00,
-      maximum_guests: 1,
+      daily_rate: 200,
+      maximum_guests: 10,
       property_location: 'Campos de Jordão'
     )
   end
