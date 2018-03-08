@@ -1,3 +1,4 @@
+<h1>Cadastro de Imóvel</h1>
 <h1><%= @property.title %></h1>
 <h3>Descrição:</h3>
 <p><%= @property.description %></p>
@@ -5,13 +6,17 @@
   <li>Localização: <%= @property.property_location %></li>
   <li>Bairro: <%= @property.neighborhood %></li>
   <li>Finalidade: <%= @property.rent_purpose %></li>
-  <li>Acessibilidade? <%= @property.accessibility? ? 'Sim' : 'Não' %></li>
-  <li>Aceita animais? <%= @property.allow_pets? ? 'Sim' : 'Não' %></li>
-  <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
+  <li>Foto principal: <%= @property.main_photo %></li>
   <li>Cômodos: <%= @property.rooms %></li>
   <li>Máximo de pessoas: <%= @property.maximum_guests %></li>
   <li>Mínimo de dias: <%= @property.minimum_rent %></li>
   <li>Máximo de dias: <%= @property.maximum_rent %></li>
   <li>Preço da diária: R$ <%= @property.daily_rate %></li>
+</ul>
+<h3>Condições permitidas:</h3>
+<ul>
+  <li>Acessibilidade? <%= @property.accessibility? ? 'Sim' : 'Não' %></li>
+  <li>Aceita animais? <%= @property.allow_pets? ? 'Sim' : 'Não' %></li>
+  <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
 <p><%= link_to 'Voltar', root_path %></p>
