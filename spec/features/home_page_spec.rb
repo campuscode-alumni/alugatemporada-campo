@@ -39,7 +39,7 @@ feature 'User vist home#index' do
     expect(page).to have_css('p', text: prop.maximum_guests)
     expect(page).to have_css('p', text: prop.daily_rate)
     expect(page).to have_css('h3', text: prop.main_photo)
-    expect(page).to have_link('Visualizar', property_path(prop))
+    expect(page).to have_link('Visualizar', href: property_path(prop))
   end
 
   def create_properties(title, local)
