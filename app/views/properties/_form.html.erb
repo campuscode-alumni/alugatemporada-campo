@@ -8,8 +8,8 @@
     <%= f.text_area :description %>
   </div>
   <div>
-    <%= f.label :property_location, 'Localização' %>
-    <%= f.text_field :property_location %>
+    <%= f.label :property_location_id, 'Localização' %>
+    <%= f.collection_select(:property_location_id, @locations, :id, :name) %>
   </div>
   <div>
     <%= f.label :neighborhood, 'Bairro' %>

@@ -16,12 +16,13 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @locations = PropertyLocation.all
   end
 
   def create
     property_params = params.require(:property).permit(:title,:maximum_guests, :maximum_rent,
                       :minimum_rent, :maximum_rent, :daily_rate, :rent_purpose,
-                      :property_location, :description, :neighborhood, :accessibility,
+                      :property_location_id, :description, :neighborhood, :accessibility,
                       :allow_pets, :allow_smokers, :rooms, :main_photo)
     @property = Property.new(property_params)
     @property.save

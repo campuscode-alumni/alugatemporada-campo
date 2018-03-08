@@ -2,11 +2,12 @@ require 'rails_helper'
 
 feature 'User create property' do
   scenario 'successfully' do
+    local = PropertyLocation.create(name: 'Porto de Galinhas')
     visit new_property_path
 
     fill_in 'Título', with: 'Casa de Campo'
     fill_in 'Descrição', with: 'Uma casa especial para férias.'
-    fill_in 'Localização', with: 'Porto de Galinhas'
+    select local.name, from: 'Localização'
     fill_in 'Bairro', with: 'Vila da Galinha'
     fill_in 'Foto principal', with: 'foto.jpg'
     fill_in 'Finalidade', with: 'Férias'
@@ -25,7 +26,7 @@ feature 'User create property' do
     expect(page).to have_css('h1', text: 'Casa de Campo')
     expect(page).to have_css('h3', text: 'Descrição')
     expect(page).to have_css('p', text: 'Uma casa especial para férias.')
-    expect(page).to have_css('li', text: 'Localização: Porto de Galinhas')
+    expect(page).to have_css('li', text: "Localização: #{local.name}")
     expect(page).to have_css('li', text: 'Bairro: Vila da Galinha')
     expect(page).to have_css('li', text: 'Foto principal: foto.jpg')
     expect(page).to have_css('li', text: 'Cômodos: 6')
