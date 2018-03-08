@@ -1,18 +1,16 @@
-<%= @message %>
-
 <%= form_tag(search_properties_path, method: 'get') do %>
   <%= label_tag(:q, "Localização") %>
-  <%#= text_field_tag :q %>
   <%= select_tag(:q, options_for_select(PropertyLocation.all.map{|l| [l.name, l.id]})) %>
   <%= submit_tag "Filtrar" %>
 <% end %>
 
 <% @properties.each do |property| %>
   <div>
-    <h1><%= property.title %></h1>
+    <h1><%= link_to property.title, property_path(property) %></h1>
     <h3><%= property.main_photo %></h3>
     <p>Localização: <%= property.property_location.name %></p>
     <p>Valor base: <%= property.daily_rate %>
     <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
+    <%= link_to 'Visualizar', property_path(property) %>
   </div>
 <% end %>

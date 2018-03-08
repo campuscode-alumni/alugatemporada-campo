@@ -27,7 +27,7 @@ feature 'User filter by' do
     select 'Campos dos Goitacases', from: 'Localização'
     click_on 'Filtrar'
 
-    expect(page).to have_css('h1', text: 'Nenhum resultado encontrado')
+    expect(page).to have_content('Nenhum resultado encontrado')
   end
 
   def create_properties(title, local)

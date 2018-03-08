@@ -12,12 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180308004852) do
 
-  create_table "locations", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "properties", force: :cascade do |t|
     t.string "title"
     t.integer "maximum_guests"
@@ -28,6 +22,12 @@ ActiveRecord::Schema.define(version: 20180308004852) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "main_photo"
+    t.text "description"
+    t.string "neighborhood"
+    t.boolean "accessibility"
+    t.boolean "allow_pets"
+    t.boolean "allow_smokers"
+    t.integer "rooms"
     t.integer "property_location_id"
     t.index ["property_location_id"], name: "index_properties_on_property_location_id"
   end
