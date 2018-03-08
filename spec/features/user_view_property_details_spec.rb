@@ -41,7 +41,6 @@ feature 'User view property details' do
   scenario 'and try to visit an invalid property' do
     visit property_path(-1)
 
-    expect(page).to have_content('Imóvel não encontrado')
-    expect(current_path).to eq(properties_path)
+    expect(current_path).to eq(root_path)
   end
 end
