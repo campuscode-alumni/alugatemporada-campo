@@ -19,4 +19,5 @@
   <li>Aceita animais? <%= @property.allow_pets? ? 'Sim' : 'Não' %></li>
   <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
+<p><%= link_to 'Enviar uma proposta',new_property_proposal_path(@property) %></p>
 <p><%= link_to 'Voltar', root_path %></p>
