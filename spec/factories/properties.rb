@@ -1,11 +1,18 @@
 FactoryBot.define do
   factory :property do
-    title "MyString"
-    maximum_guests 1
-    minimum_rent 1
-    maximum_rent 1
-    daily_rate "9.99"
-    rent_purpose "MyString"
-    property_location "MyString"
+    title "Casa de Campo"
+    description 'Uma casa especial para férias.'
+    property_location
+    neighborhood 'Vila da Galinha'
+    main_photo 'foto.jpg'
+    rent_purpose 'Férias'
+    rooms 6
+    accessibility true
+    allow_pets true
+    allow_smokers false
+    maximum_guests 5
+    minimum_rent 5
+    maximum_rent 5
+    daily_rate "199.99"
   end
 end

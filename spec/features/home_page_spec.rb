@@ -43,11 +43,22 @@ feature 'User vist home#index' do
   end
 
   def create_properties(title, local)
-    Property.create(title: title,
+    Property.create(
+      title: title,
       main_photo: 'casa_de_campo.jpg',
-      daily_rate: 200,
-      maximum_guests: 10,
-      property_location: local
+      property_location: local,
+      description: 'Uma casa especial para férias.',
+      neighborhood: 'Vila da Galinha',
+      rent_purpose: 'Férias',
+      rooms: 6,
+      accessibility: true,
+      allow_pets: true,
+      allow_smokers: false,
+      maximum_guests: 5,
+      minimum_rent: 5,
+      maximum_rent: 5,
+      daily_rate: 199.99
     )
   end
+
 end

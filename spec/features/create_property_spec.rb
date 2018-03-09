@@ -42,6 +42,26 @@ feature 'User create property' do
     expect(page).to have_content('Voltar')
   end
 
-  scenario 'fail' do
+  scenario 'and must fill in all fields' do
+    local = PropertyLocation.create(name: 'Porto de Galinhas')
+    visit new_property_path
+
+    fill_in 'Título', with: ''
+    fill_in 'Descrição', with: ''
+    select local.name, from: 'Localização'
+    fill_in 'Bairro', with: ''
+    fill_in 'Foto principal', with: ''
+    fill_in 'Finalidade', with: ''
+    fill_in 'Quantidade de cômodos', with: ''
+    check 'Possui acessibilidade'
+    check 'Aceita animais'
+    check 'Aceita fumantes'
+    fill_in 'Máximo de pessoas', with: ''
+    fill_in 'Mínimo de dias para locação', with: ''
+    fill_in 'Máximo de dias para locação', with: ''
+    fill_in 'Preço da diária', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content('É necessário preencher todos os dados do imóvel')
   end
 end

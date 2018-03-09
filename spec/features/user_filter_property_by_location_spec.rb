@@ -35,7 +35,16 @@ feature 'User filter by' do
       main_photo: 'casa_de_campo.jpg',
       daily_rate: 200,
       maximum_guests: 10,
-      property_location_id: local.id
+      property_location_id: local.id,
+      description: 'Uma casa especial para férias.',
+      neighborhood: 'Vila da Galinha',
+      rent_purpose: 'Férias',
+      rooms: 6,
+      accessibility: true,
+      allow_pets: true,
+      allow_smokers: false,
+      minimum_rent: 5,
+      maximum_rent: 5
     )
   end
 end
