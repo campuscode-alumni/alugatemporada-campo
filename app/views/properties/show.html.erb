@@ -19,4 +19,21 @@
   <li>Aceita animais? <%= @property.allow_pets? ? 'Sim' : 'Não' %></li>
   <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
+<p><%= link_to 'Enviar uma proposta',new_property_proposal_path(@property) %></p>
 <p><%= link_to 'Voltar', root_path %></p>
+<h2> Propostas </h2>
+<% @property.proposals.each do |proposal| %>
+  <ul>
+    <li>Proponente: <%= proposal.name %></li>
+    <li>email do proponente: <%= proposal.email %></li>
+    <li>Telefone do proponete: <%= proposal.phone%></li>
+    <li>Finalidade da proposta: <%= proposal.rent_purpose %></li>
+    <li>Quantidade de hospedes: <%= proposal.total_guest %></li>
+    <li>estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
+    <li><%= proposal.pet ? 'Vou levar meu pet' : 'Não vou levar o meu pet' %></li>
+    <li><%= proposal.smoker ? 'Sou fumante' : 'Não sou fumante' %></li>
+    <li>Valor da proposta: <%= proposal.total_amount %></li>
+    <li>Maiores detalhes: <%= proposal.details %></li>
+  </ul>
+
+<% end %>
