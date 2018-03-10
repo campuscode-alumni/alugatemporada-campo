@@ -4,6 +4,8 @@ feature 'Owner register property' do
   scenario 'successfully' do
     local = create(:property_location, name: 'Porto de Galinhas')
     owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    login_as(owner, scope: :property_owner)
+
     visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: 'Casa de Campo'
@@ -46,6 +48,8 @@ feature 'Owner register property' do
   scenario 'and must fill in all fields' do
     local = create(:property_location, name: 'Porto de Galinhas')
     owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    login_as(owner, scope: :property_owner)
+
     visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: ''
@@ -65,5 +69,14 @@ feature 'Owner register property' do
     click_on 'Enviar'
 
     expect(page).to have_content('É necessário preencher todos os dados do imóvel')
+  end
+
+  scenario 'only logged in' do
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    visit new_property_owner_property_path(owner)
+
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(current_path).to eq(new_property_owner_session_path)
   end
 end

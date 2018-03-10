@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_property_owner!, only: [:new, :create]
+  
   def search
     @properties = Property.where(property_location_id: params[:q])
 
@@ -38,7 +40,7 @@ class PropertiesController < ApplicationController
       render :new
     end
   end
-  
+
   def index
     @properties = Property.where(property_owner_id: params[:property_owner_id])
     @property_owner = PropertyOwner.find(params[:property_owner_id])
