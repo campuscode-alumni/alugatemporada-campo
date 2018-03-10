@@ -38,4 +38,13 @@ class PropertiesController < ApplicationController
       render :new
     end
   end
+  
+  def index
+    @properties = Property.where(property_owner_id: params[:property_owner_id])
+    @property_owner = PropertyOwner.find(params[:property_owner_id])
+
+    if @properties.empty?
+      flash[:alert] = 'Você não possui propriedades cadastrada'
+    end
+  end
 end

@@ -2,18 +2,19 @@ require 'rails_helper'
 
 feature 'User vist home#index' do
   scenario 'see last 10' do
+    owner = create(:property_owner)
     local = PropertyLocation.create(name: 'Santos')
-    prop1 = create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    create_properties('Casa de campo', local)
-    prop2 = create_properties('Old', local)
+    prop1 = create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    create_properties('Casa de campo', local, owner)
+    prop2 = create_properties('Old', local, owner)
 
     visit root_path
 
@@ -29,8 +30,9 @@ feature 'User vist home#index' do
   end
 
   scenario 'see one property' do
+    owner = create(:property_owner)
     local = PropertyLocation.create(name: 'Santos')
-    prop = create_properties('Casa de campo', local)
+    prop = create_properties('Casa de campo', local, owner)
 
     visit root_path
 
@@ -42,7 +44,7 @@ feature 'User vist home#index' do
     expect(page).to have_link('Ver mais detalhes', href: property_path(prop))
   end
 
-  def create_properties(title, local)
+  def create_properties(title, local, owner)
     Property.create(
       title: title,
       main_photo: 'casa_de_campo.jpg',
@@ -57,7 +59,9 @@ feature 'User vist home#index' do
       maximum_guests: 5,
       minimum_rent: 5,
       maximum_rent: 5,
-      daily_rate: 199.99
+      daily_rate: 199.99,
+      property_owner: owner
+
     )
   end
 

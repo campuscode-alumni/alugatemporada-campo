@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'user send a proposal' do
   scenario 'successfuly' do
+    owner = create(:property_owner)
     local = PropertyLocation.create(name: 'Santos')
     property = Property.create(
                 title: 'Casa de Campo',
@@ -18,6 +19,7 @@ feature 'user send a proposal' do
                 accessibility: true,
                 allow_pets: false,
                 allow_smokers: true,
+                property_owner: owner
               )
 
     visit root_path

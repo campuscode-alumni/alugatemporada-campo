@@ -1,0 +1,8 @@
+<div>
+  <h1><%= link_to property.title, property_path(property) %></h1>
+  <h3><%= property.main_photo %></h3>
+  <p>Localização: <%= property.property_location.name %></p>
+  <p>Valor base: <%= property.daily_rate %>
+  <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
+  <%= link_to 'Ver mais detalhes', property_path(property) %>
+</div>
