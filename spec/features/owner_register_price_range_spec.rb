@@ -31,10 +31,10 @@ feature 'Owner register a price range in a property' do
 
     expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('h3', text: 'Preços por temporada')
+    expect(page).to have_css('h4', text: 'Carnaval')
     expect(page).to have_css('li', text: 'Data inicial: 01/02/2018')
     expect(page).to have_css('li', text: 'Data final: 05/02/2018')
-    expect(page).to have_css('li', text: 'Preço da diária: 1000.0')
+    expect(page).to have_css('li', text: 'Preço da diária: R$ 1000.0')
     expect(current_path).to eq(property_path(property))
-
   end
 end

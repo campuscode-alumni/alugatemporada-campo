@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308004852) do
+ActiveRecord::Schema.define(version: 20180310033738) do
+
+  create_table "price_ranges", force: :cascade do |t|
+    t.string "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.decimal "daily_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_price_ranges_on_property_id"
+  end
 
   create_table "properties", force: :cascade do |t|
     t.string "title"
@@ -29,6 +40,8 @@ ActiveRecord::Schema.define(version: 20180308004852) do
     t.boolean "allow_smokers"
     t.integer "rooms"
     t.integer "property_location_id"
+    t.integer "price_range_id"
+    t.index ["price_range_id"], name: "index_properties_on_price_range_id"
     t.index ["property_location_id"], name: "index_properties_on_property_location_id"
   end
 

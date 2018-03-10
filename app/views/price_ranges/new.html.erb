@@ -1,0 +1,23 @@
+<%= form_for([@property, @price_range]) do |f| %>
+  <div>
+    <%= f.label :description, 'Nome' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :start_date, 'Data inicial' %>
+    <%= f.text_field :start_date %>
+  </div>
+
+  <div>
+    <%= f.label :end_date, 'Data final' %>
+    <%= f.text_field :end_date %>
+  </div>
+
+  <div>
+    <%= f.label :daily_rate, 'Preço da diária' %>
+    <%= f.text_field :daily_rate %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

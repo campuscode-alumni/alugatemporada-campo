@@ -19,4 +19,17 @@
   <li>Aceita animais? <%= @property.allow_pets? ? 'Sim' : 'Não' %></li>
   <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
+
+<h3>Preços por temporada</h3>
+<% @property.price_ranges.each do |price_range| %>
+
+  <h4><%= price_range.description %></h4>
+  <ul>
+    <li>Data inicial: <%= price_range.start_date.strftime("%d/%m/%Y") %></li>
+    <li>Data final: <%= price_range.end_date.strftime("%d/%m/%Y") %></li>
+    <li>Preço da diária: R$ <%= price_range.daily_rate %></li>
+  </ul>
+<% end %>
+
 <p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
