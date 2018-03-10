@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :properties, only: [:show, :new, :create] do
     resources :price_ranges, only: [:create, :new, :show]
     get 'search', on: :collection
+    resources :proposals, only: [:new, :create]
   end
 end
