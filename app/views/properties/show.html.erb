@@ -20,6 +20,10 @@
   <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
 
+<p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
+<p><%= link_to 'Enviar uma proposta', new_property_proposal_path(@property) %></p>
+
 <h3>Preços por temporada</h3>
 <% @property.price_ranges.each do |price_range| %>
 
@@ -31,5 +35,18 @@
   </ul>
 <% end %>
 
-<p><%= link_to 'Voltar', root_path %></p>
-<p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
+<h2> Propostas </h2>
+<% @property.proposals.each do |proposal| %>
+  <ul>
+    <li>Proponente: <%= proposal.name %></li>
+    <li>email do proponente: <%= proposal.email %></li>
+    <li>Telefone do proponete: <%= proposal.phone%></li>
+    <li>Finalidade da proposta: <%= proposal.rent_purpose %></li>
+    <li>Quantidade de hospedes: <%= proposal.total_guest %></li>
+    <li>estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
+    <li><%= proposal.pet ? 'Vou levar meu pet' : 'Não vou levar o meu pet' %></li>
+    <li><%= proposal.smoker ? 'Sou fumante' : 'Não sou fumante' %></li>
+    <li>Valor da proposta: <%= proposal.total_amount %></li>
+    <li>Maiores detalhes: <%= proposal.details %></li>
+  </ul>
+<% end %>
