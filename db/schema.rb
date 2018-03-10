@@ -40,15 +40,32 @@ ActiveRecord::Schema.define(version: 20180310033738) do
     t.boolean "allow_smokers"
     t.integer "rooms"
     t.integer "property_location_id"
-    t.integer "price_range_id"
-    t.index ["price_range_id"], name: "index_properties_on_price_range_id"
+    t.integer "property_owner_id"
     t.index ["property_location_id"], name: "index_properties_on_property_location_id"
+    t.index ["property_owner_id"], name: "index_properties_on_property_owner_id"
   end
 
   create_table "property_locations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "property_owners", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_property_owners_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_property_owners_on_reset_password_token", unique: true
   end
 
   create_table "proposals", force: :cascade do |t|

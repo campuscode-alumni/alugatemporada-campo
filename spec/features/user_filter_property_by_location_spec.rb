@@ -2,8 +2,9 @@ require 'rails_helper'
 
 feature 'User filter by' do
   scenario 'valid location' do
+    owner = create(:property_owner)
     local = PropertyLocation.create(name: 'Campos do Jordão')
-    create_properties('Casa de fazenda', local)
+    create_properties('Casa de fazenda', local, owner)
 
     visit root_path
 
@@ -18,9 +19,10 @@ feature 'User filter by' do
   end
 
   scenario 'invalid location' do
+    owner = create(:property_owner)
     PropertyLocation.create(name: 'Campos dos Goitacases')
     local = PropertyLocation.create(name: 'Campos do Jordão')
-    prop = create_properties('Casa de fazenda', local)
+    prop = create_properties('Casa de fazenda', local, owner)
 
     visit root_path
 
@@ -30,7 +32,7 @@ feature 'User filter by' do
     expect(page).to have_content('Nenhum resultado encontrado')
   end
 
-  def create_properties(title, local)
+  def create_properties(title, local, owner)
     Property.create(title: title,
       main_photo: 'casa_de_campo.jpg',
       daily_rate: 200,
@@ -44,7 +46,8 @@ feature 'User filter by' do
       allow_pets: true,
       allow_smokers: false,
       minimum_rent: 5,
-      maximum_rent: 5
+      maximum_rent: 5,
+      property_owner: owner
     )
   end
 end

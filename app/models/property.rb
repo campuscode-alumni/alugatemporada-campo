@@ -1,5 +1,7 @@
 class Property < ApplicationRecord
   belongs_to :property_location
+  belongs_to :property_owner
+  
   has_many :price_ranges
   has_many :proposals
 

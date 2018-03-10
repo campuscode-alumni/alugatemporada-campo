@@ -1,9 +1,12 @@
 require 'rails_helper'
 
-feature 'User create property' do
+feature 'Owner register property' do
   scenario 'successfully' do
-    local = PropertyLocation.create(name: 'Porto de Galinhas')
-    visit new_property_path
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    login_as(owner, scope: :property_owner)
+
+    visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: 'Casa de Campo'
     fill_in 'Descrição', with: 'Uma casa especial para férias.'
@@ -21,7 +24,7 @@ feature 'User create property' do
     fill_in 'Preço da diária', with: '250.00'
     click_on 'Enviar'
 
-    expect(current_path).to eq property_path(1)
+    expect(current_path).to eq property_path(Property.last.id)
     expect(page).to have_css('h1', text: 'Cadastro de Imóvel')
     expect(page).to have_css('h1', text: 'Casa de Campo')
     expect(page).to have_css('h3', text: 'Descrição')
@@ -43,8 +46,11 @@ feature 'User create property' do
   end
 
   scenario 'and must fill in all fields' do
-    local = PropertyLocation.create(name: 'Porto de Galinhas')
-    visit new_property_path
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    login_as(owner, scope: :property_owner)
+
+    visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: ''
     fill_in 'Descrição', with: ''
@@ -63,5 +69,14 @@ feature 'User create property' do
     click_on 'Enviar'
 
     expect(page).to have_content('É necessário preencher todos os dados do imóvel')
+  end
+
+  scenario 'only logged in' do
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    visit new_property_owner_property_path(owner)
+
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(current_path).to eq(new_property_owner_session_path)
   end
 end

@@ -2,6 +2,7 @@ require "rails_helper"
 
 feature 'Owner register a price range in a property' do
   scenario 'successfuly' do
+    owner = create(:property_owner)
     local = PropertyLocation.create(name: 'Campos do Jordão')
     property = Property.create(
                 title: 'Casa de Campo',
@@ -18,6 +19,7 @@ feature 'Owner register a price range in a property' do
                 accessibility: true,
                 allow_pets: false,
                 allow_smokers: true,
+                property_owner: owner
               )
 
     visit property_path(property)
