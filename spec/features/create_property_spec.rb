@@ -3,7 +3,8 @@ require 'rails_helper'
 feature 'User create property' do
   scenario 'successfully' do
     local = PropertyLocation.create(name: 'Porto de Galinhas')
-    visit new_property_path
+    owner = PropertyOwner.create(email: 'owner@property.com', password: '12345678')
+    visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: 'Casa de Campo'
     fill_in 'Descrição', with: 'Uma casa especial para férias.'
@@ -21,7 +22,7 @@ feature 'User create property' do
     fill_in 'Preço da diária', with: '250.00'
     click_on 'Enviar'
 
-    expect(current_path).to eq property_path(1)
+    expect(current_path).to eq property_path(Property.last.id)
     expect(page).to have_css('h1', text: 'Cadastro de Imóvel')
     expect(page).to have_css('h1', text: 'Casa de Campo')
     expect(page).to have_css('h3', text: 'Descrição')
@@ -44,7 +45,8 @@ feature 'User create property' do
 
   scenario 'and must fill in all fields' do
     local = PropertyLocation.create(name: 'Porto de Galinhas')
-    visit new_property_path
+    owner = PropertyOwner.create(email: 'owner@property.com', password: '12345678')
+    visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: ''
     fill_in 'Descrição', with: ''
