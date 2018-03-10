@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'User create property' do
+feature 'Owner register property' do
   scenario 'successfully' do
-    local = PropertyLocation.create(name: 'Porto de Galinhas')
-    owner = PropertyOwner.create(email: 'owner@property.com', password: '12345678')
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
     visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: 'Casa de Campo'
@@ -44,8 +44,8 @@ feature 'User create property' do
   end
 
   scenario 'and must fill in all fields' do
-    local = PropertyLocation.create(name: 'Porto de Galinhas')
-    owner = PropertyOwner.create(email: 'owner@property.com', password: '12345678')
+    local = create(:property_location, name: 'Porto de Galinhas')
+    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
     visit new_property_owner_property_path(owner)
 
     fill_in 'Título', with: ''

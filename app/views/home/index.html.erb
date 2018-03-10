@@ -1,9 +1,4 @@
-<% if property_owner_signed_in? %>
-  <%= "Olá #{current_property_owner.email}" %> |
-  <%= link_to 'Minhas propriedades', property_owner_properties_path(current_property_owner) %>
-<% else %>
-  <%= link_to('Entrar', new_property_owner_session_path)  %>
-<% end %>
+<%= render 'shared/navbar' %>
 
 <%= form_tag(search_properties_path, method: 'get') do %>
   <%= label_tag(:q, "Localização") %>
