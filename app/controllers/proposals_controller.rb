@@ -19,6 +19,7 @@ class ProposalsController < ApplicationController
       flash[:notice] = 'Sua proposta foi enviada com sucesso!'
       redirect_to property_path(@property)
     else
+      flash[:errors] = 'Não foi possível envia sua proposta!'
       render :new
     end
   end

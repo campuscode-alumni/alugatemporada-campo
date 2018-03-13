@@ -52,4 +52,34 @@ feature 'user send a proposal' do
     expect(page).to have_css('li', text: 'Sou fumante')
     expect(page).to have_css('li', text: 'Maiores detalhes: N/A')
   end
+
+  scenario 'with invalid params' do
+    property = create(:property)
+    visit root_path
+    click_on 'Ver mais detalhes'
+    click_on 'Enviar uma proposta'
+
+    fill_in 'Nome', with: ''
+    fill_in 'Email', with: ''
+    fill_in 'Telefone', with: ''
+    fill_in 'Finalidade', with: ''
+    fill_in 'Quantidade de hospedes', with: ''
+    fill_in 'Data de entrada', with: ''
+    fill_in 'Data de saída', with:  ''
+    check 'Pretende levar pets?'
+    check 'Fumante?'
+    fill_in 'Valor da proposta', with: 200.00
+    fill_in 'Mais informações', with: 'N/A'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Não foi possível envia sua proposta!')
+    expect(page).to have_css('div', text: "name can't be blank")
+    expect(page).to have_css('li', text: "email can't be blank")
+    expect(page).to have_css('li', text: "phone can't be blank")
+    expect(page).to have_css('li', text: "rent_purpose can't be blank")
+    expect(page).to have_css('li', text: "total_guest can't be blank")
+    expect(page).to have_css('li', text: "start_date can't be blank")
+    expect(page).to have_css('li', text: "end_date can't be blank")
+    expect(current_path).to eq(new_property_proposal_path(property))
+  end
 end
