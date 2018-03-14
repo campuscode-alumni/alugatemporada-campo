@@ -10,11 +10,12 @@ class PriceRangesController < ApplicationController
                     )
 
     @property = Property.find(params[:property_id])
-    @price_range = PriceRange.new(create_params)
+    @price_range = @property.price_ranges.build(create_params)
 
-    @price_range.property = @property
-    @price_range.save
-
-    redirect_to property_path @property
+    if @price_range.save
+      redirect_to property_path @property
+    else
+      render :new
+    end
   end
 end
