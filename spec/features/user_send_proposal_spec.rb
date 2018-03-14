@@ -73,13 +73,13 @@ feature 'user send a proposal' do
     click_on 'Enviar'
 
     expect(page).to have_content('Não foi possível envia sua proposta!')
-    expect(page).to have_css('div', text: "name can't be blank")
-    expect(page).to have_css('li', text: "email can't be blank")
-    expect(page).to have_css('li', text: "phone can't be blank")
-    expect(page).to have_css('li', text: "rent_purpose can't be blank")
-    expect(page).to have_css('li', text: "total_guest can't be blank")
-    expect(page).to have_css('li', text: "start_date can't be blank")
-    expect(page).to have_css('li', text: "end_date can't be blank")
-    expect(current_path).to eq(new_property_proposal_path(property))
+    expect(page).to have_css('div', text: "Name can't be blank")
+    expect(page).to have_css('div', text: "Email can't be blank")
+    expect(page).to have_css('div', text: "Phone can't be blank")
+    expect(page).to have_css('div', text: "Rent purpose can't be blank")
+    expect(page).to have_css('div', text: "Total guest can't be blank")
+    expect(page).to have_css('div', text: "Start date can't be blank")
+    expect(page).to have_css('div', text: "End date can't be blank")
+    expect(current_path).to eq(property_proposals_path(property))
   end
 end
