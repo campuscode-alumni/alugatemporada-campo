@@ -21,7 +21,13 @@ class ProposalsController < ApplicationController
   end
 
   def index
-    @proposals = current_user.proposals
+    if property_owner_signed_in?
+      @proposals = Proposal.where(property_id: params[:property_id])
+    end
+
+    if user_signed_in?
+      @proposals = current_user.proposals
+    end
 
     #TO-DO -> criar um cenário para padronizar com propriedades
     # if @proposals.empty?

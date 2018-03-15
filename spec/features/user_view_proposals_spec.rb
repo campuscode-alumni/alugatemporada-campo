@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-feature 'User can view your proposals' do
-  scenario 'Login successfuly' do
+feature 'User view your proposals' do
+  scenario 'login successfuly' do
     user = create(:user)
 
     visit root_path
@@ -24,12 +24,12 @@ feature 'User can view your proposals' do
     click_on 'Minhas propostas'
 
     expect(page).to have_css('h1', text: 'Minhas propostas')
-    expect(page).to have_content(property.title)
-    expect(page).to have_content(property.property_location.name)
-    expect(page).to have_content(format_date(proposal.start_date))
-    expect(page).to have_content(format_date(proposal.end_date))
-    # TO-DO Precisamos corrigir o cálcudo das diárias e padronizar a exibição
-    expect(page).to have_content("R$#{proposal.total_amount}")
+    expect(page).to have_css('li', text: property.title)
+    expect(page).to have_css('li', text: property.property_location.name)
+    expect(page).to have_css('li', text: format_date(proposal.start_date))
+    expect(page).to have_css('li', text: format_date(proposal.end_date))
+    expect(page).to have_css('li', text: "R$800,00")
+
     expect(page).to have_link('Sair')
     expect(page).to have_link('Voltar')
   end
