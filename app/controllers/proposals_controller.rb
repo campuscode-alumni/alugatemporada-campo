@@ -23,4 +23,8 @@ class ProposalsController < ApplicationController
       render :new
     end
   end
+
+  def index
+    @proposals = Proposal.where(property_id: params[:property_id])
+  end
 end

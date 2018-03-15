@@ -6,3 +6,8 @@
   <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
   <%= link_to 'Ver mais detalhes', property_path(property) %>
 </div>
+<div>
+  <% if property_owner_signed_in? %>
+    <%= link_to 'Visualizar propostas', property_proposals_path(property) %>
+  <% end %>
+</div>

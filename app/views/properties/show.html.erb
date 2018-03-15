@@ -37,16 +37,5 @@
 
 <h2> Propostas </h2>
 <% @property.proposals.each do |proposal| %>
-  <ul>
-    <li>Proponente: <%= proposal.name %></li>
-    <li>email do proponente: <%= proposal.email %></li>
-    <li>Telefone do proponete: <%= proposal.phone%></li>
-    <li>Finalidade da proposta: <%= proposal.rent_purpose %></li>
-    <li>Quantidade de hospedes: <%= proposal.total_guest %></li>
-    <li>estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
-    <li><%= proposal.pet ? 'Vou levar meu pet' : 'Não vou levar o meu pet' %></li>
-    <li><%= proposal.smoker ? 'Sou fumante' : 'Não sou fumante' %></li>
-    <li>Valor da proposta: <%= proposal.total_amount %></li>
-    <li>Maiores detalhes: <%= proposal.details %></li>
-  </ul>
+  <%= render partial: "shared/proposal", locals: {proposal: proposal} %>
 <% end %>

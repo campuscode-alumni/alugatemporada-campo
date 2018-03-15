@@ -21,6 +21,8 @@ feature 'user send a proposal' do
                 allow_smokers: true,
                 property_owner: owner
               )
+    s_day = Date.today.strftime('%d/%m/%Y')
+    e_day = (Date.today + 10.days).strftime('%d/%m/%Y')
 
     visit root_path
     click_on 'Ver mais detalhes'
@@ -31,11 +33,10 @@ feature 'user send a proposal' do
     fill_in 'Telefone', with: '121212-13131'
     fill_in 'Finalidade', with: 'Despedida de solteiro'
     fill_in 'Quantidade de hospedes', with: 12
-    fill_in 'Data de entrada', with: '21/11/2018'
-    fill_in 'Data de saída', with:  '28/11/2018'
+    fill_in 'Data de entrada', with: s_day
+    fill_in 'Data de saída', with:  e_day
     check 'Pretende levar pets?'
     check 'Fumante?'
-    fill_in 'Valor da proposta', with: 200.00
     fill_in 'Mais informações', with: 'N/A'
     click_on 'Enviar'
 
@@ -46,8 +47,8 @@ feature 'user send a proposal' do
     expect(page).to have_css('li', text: 'Telefone do proponete: 121212-13131')
     expect(page).to have_css('li', text: 'Finalidade da proposta: Despedida de solteiro')
     expect(page).to have_css('li', text: 'Quantidade de hospedes: 12')
-    expect(page).to have_css('li', text: 'estadia de 21/11/2018 até 28/11/2018')
-    expect(page).to have_css('li', text: 'Valor da proposta: 200.0' )
+    expect(page).to have_css('li', text: "estadia de #{s_day} até #{e_day}")
+    expect(page).to have_css('li', text: 'Valor total da proposta: R$2000,00')
     expect(page).to have_css('li', text: 'Vou levar meu pet')
     expect(page).to have_css('li', text: 'Sou fumante')
     expect(page).to have_css('li', text: 'Maiores detalhes: N/A')
@@ -68,7 +69,6 @@ feature 'user send a proposal' do
     fill_in 'Data de saída', with:  ''
     check 'Pretende levar pets?'
     check 'Fumante?'
-    fill_in 'Valor da proposta', with: 200.00
     fill_in 'Mais informações', with: 'N/A'
     click_on 'Enviar'
 

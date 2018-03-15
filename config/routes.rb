@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   resources :properties, only: [:show] do
     get 'search', on: :collection
     resources :price_ranges, only: [:create, :new, :show]
-    resources :proposals, only: [:new, :create]
+    resources :proposals, only: [:new, :create, :index]
   end
 
-  resources :property_owners do
+  resources :property_owners, only: [:index] do
     resources :properties, only: [:index, :show, :new, :create]
   end
 end

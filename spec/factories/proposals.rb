@@ -9,7 +9,6 @@ FactoryBot.define do
     end_date "2018-03-08"
     pet false
     smoker false
-    total_amount "9.99"
     details "MyText"
     property
   end
