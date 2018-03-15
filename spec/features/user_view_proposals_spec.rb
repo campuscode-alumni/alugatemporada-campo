@@ -35,9 +35,58 @@ feature 'User view your proposals' do
   end
 
   scenario 'user can see only your proposal' do
+    user_1 = create(:user, email: 'user1@email.com')
+    user_2 = create(:user, email: 'user2@email.com')
+
+    location_1 = create(:property_location, name: 'Fortaleza')
+    location_2 = create(:property_location, name: 'Maceió')
+    location_3 = create(:property_location, name: 'João Pessoa')
+    property_owner = create(:property_owner)
+
+    property_1 = create(:property, title: 'Casa em Fortaleza',
+          property_location: location_1, property_owner: property_owner)
+    property_2 = create(:property, title: 'Casa em Maceió',
+          property_location: location_2, property_owner: property_owner)
+    property_3 = create(:property, title: 'Casa em João Pessoa',
+          property_location: location_3, property_owner: property_owner)
+
+    proposal_1 = create(:proposal, user: user_1, property: property_1)
+    proposal_2 = create(:proposal, user: user_1, property: property_2)
+    proposal_3 = create(:proposal, user: user_2, property: property_3, end_date: '2018-12-06')
+
+    login_as(user_1, scope: :user)
+    visit root_path
+    click_on 'Minhas propostas'
+
+    expect(page).to have_css('h1', text: 'Minhas propostas')
+    expect(page).to have_css('li', text: property_1.title)
+    expect(page).to have_css('li', text: property_1.property_location.name)
+    expect(page).to have_css('li', text: format_date(proposal_1.start_date))
+    expect(page).to have_css('li', text: format_date(proposal_1.end_date))
+    expect(page).to have_css('li', text: "R$800,00")
+
+    expect(page).to have_css('li', text: property_2.title)
+    expect(page).to have_css('li', text: property_2.property_location.name)
+    expect(page).to have_css('li', text: format_date(proposal_2.start_date))
+    expect(page).to have_css('li', text: format_date(proposal_2.end_date))
+    expect(page).to have_css('li', text: "R$800,00")
+
+    expect(page).not_to have_css('li', text: property_3.title)
+    expect(page).not_to have_css('li', text: property_3.property_location.name)
+    expect(page).not_to have_css('li', text: format_date(proposal_3.end_date))
+    expect(page).not_to have_css('li', text: "R$1000,00")
+    expect(page).to have_link('Voltar')
   end
 
-  scenario 'user have not proposal' do
+  scenario 'and not have any proposal' do
+    user = create(:user)
+    login_as(user, scope: :user)
+
+    visit root_path
+    click_on 'Minhas propostas'
+
+    expect(page).to have_content('Você ainda não fez nenhuma proposta para locação')
+    expect(page).to have_link('Voltar')
   end
 end
 

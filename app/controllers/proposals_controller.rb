@@ -29,10 +29,9 @@ class ProposalsController < ApplicationController
       @proposals = current_user.proposals
     end
 
-    #TO-DO -> criar um cenário para padronizar com propriedades
-    # if @proposals.empty?
-    #   flash[:alert] = 'Você não tem propostas.'
-    # end
+    if @proposals.empty?
+      flash[:alert] = 'Você ainda não fez nenhuma proposta para locação'
+    end
   end
 
   def new
