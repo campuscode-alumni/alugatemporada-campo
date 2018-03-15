@@ -1,6 +1,15 @@
 <% if property_owner_signed_in? %>
   <%= "Olá #{current_property_owner.email}" %> |
-  <%= link_to 'Minhas propriedades', property_owner_properties_path(current_property_owner) %>
+  <%= link_to 'Minhas propriedades', properties_path(current_property_owner) %> |
+  <%= link_to('Sair', destroy_property_owner_session_path)  %>
 <% else %>
-  <%= link_to('Entrar', new_property_owner_session_path)  %>
+  <%= link_to('Entrar como proprietário', new_property_owner_session_path)  %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= "Olá #{current_user.email}" %> |
+  <%= link_to 'Minhas propostas', proposals_path %> |
+  <%= link_to('Sair', destroy_user_session_path)  %>
+<% else %>
+  <%= link_to('Entrar como usuário', new_user_session_path) %>
 <% end %>

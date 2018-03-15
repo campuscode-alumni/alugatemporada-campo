@@ -1,4 +1,8 @@
 class ProposalsController < ApplicationController
+  def index
+    @proposals = current_user.proposals
+  end
+  
   def new
     @property = Property.find(params[:property_id])
     @proposal = Proposal.new

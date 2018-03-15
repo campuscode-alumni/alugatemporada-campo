@@ -7,14 +7,14 @@ feature 'owner view your own properties' do
 
     visit root_path
 
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: '12345678'
     click_on 'Logar'
     click_on 'Minhas propriedades'
 
-    expect(current_path).to eq(property_owner_properties_path(owner))
+    expect(current_path).to eq(properties_path(owner))
     expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('h3', text: property.main_photo)
     expect(page).to have_css('p', text: property.property_location.name)
@@ -35,14 +35,14 @@ feature 'owner view your own properties' do
 
     visit root_path
 
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: '12345678'
     click_on 'Logar'
     click_on 'Minhas propriedades'
 
-    expect(current_path).to eq(property_owner_properties_path(owner))
+    expect(current_path).to eq(properties_path(owner))
     expect(page).to have_css('h1', text: property.title)
     expect(page).to have_css('h3', text: property.main_photo)
     expect(page).to have_css('p', text: "Localização: #{property.property_location.name}")
@@ -63,15 +63,15 @@ feature 'owner view your own properties' do
 
     visit root_path
 
-    click_on 'Entrar'
+    click_on 'Entrar como proprietário'
 
     fill_in 'Email', with: owner.email
     fill_in 'Senha', with: '12345678'
     click_on 'Logar'
     click_on 'Minhas propriedades'
 
-    expect(current_path).to eq(property_owner_properties_path(owner))
-    expect(page).to have_link('Cadastrar nova propriedade', href: new_property_owner_property_path(owner))
+    expect(current_path).to eq(properties_path(owner))
+    expect(page).to have_link('Cadastrar nova propriedade', href: new_property_path(owner))
     expect(page).to have_content('Você não possui propriedades cadastrada')
   end
 end

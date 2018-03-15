@@ -1,0 +1,11 @@
+<h1>Minhas propostas</h1>
+<% @proposals.each do |proposal| %>
+  <ul>
+    <li><%= link_to proposal.property.title, property_path(proposal.property) %></li>
+    <li><%= proposal.property.property_location.name%></li>
+    <li><%= proposal.start_date%></li>
+    <li><%= proposal.end_date%></li>
+    <li><%= proposal.total_amount%></li>
+  </ul>
+<% end %>
+<%= link_to 'Voltar', root_path %>

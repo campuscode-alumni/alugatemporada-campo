@@ -1,5 +1,4 @@
-<%= render 'shared/navbar' %>
-
+<h1>Bem vindo ao Aluga Temporada</h1>
 <%= form_tag(search_properties_path, method: 'get') do %>
   <%= label_tag(:q, "Localização") %>
   <%= select_tag(:q, options_for_select(PropertyLocation.all.map{|l| [l.name, l.id]})) %>

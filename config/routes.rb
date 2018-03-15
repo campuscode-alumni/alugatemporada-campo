@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :property_owners
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -9,7 +10,11 @@ Rails.application.routes.draw do
     resources :proposals, only: [:new, :create]
   end
 
-  resources :property_owners do
+  scope :property_owners do
     resources :properties, only: [:index, :show, :new, :create]
+  end
+
+  scope :users do
+    resources :proposals, only: [:index]
   end
 end
