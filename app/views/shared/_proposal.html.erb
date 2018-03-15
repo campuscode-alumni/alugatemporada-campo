@@ -1,7 +1,7 @@
 <ul>
-  <li>Proponente: <%= proposal.name %></li>
-  <li>email do proponente: <%= proposal.email %></li>
-  <li>Telefone do proponete: <%= proposal.phone%></li>
+  <li>Proponente: <%= proposal.user.name %></li>
+  <li>email do proponente: <%= proposal.user.email %></li>
+  <li>Telefone do proponete: <%= proposal.user.phone%></li>
   <li>Finalidade da proposta: <%= proposal.rent_purpose %></li>
   <li>Quantidade de hospedes: <%= proposal.total_guest %></li>
   <li>estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>

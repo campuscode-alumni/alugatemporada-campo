@@ -1,3 +1,8 @@
+<h1>Minhas propostas</h1>
+
 <% @proposals.each do |proposal| %>
   <%= render partial: "shared/proposal", locals: {proposal: proposal} %>
 <% end %>
+
+<%= link_to 'Voltar', root_path %>
+

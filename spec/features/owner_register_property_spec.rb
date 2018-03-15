@@ -2,11 +2,11 @@ require 'rails_helper'
 
 feature 'Owner register property' do
   scenario 'successfully' do
-    local = create(:property_location, name: 'Porto de Galinhas')
-    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
+    local = create(:property_location)
+    owner = create(:property_owner)
     login_as(owner, scope: :property_owner)
 
-    visit new_property_owner_property_path(owner)
+    visit new_property_path
 
     fill_in 'Título', with: 'Casa de Campo'
     fill_in 'Descrição', with: 'Uma casa especial para férias.'
@@ -50,7 +50,7 @@ feature 'Owner register property' do
     owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
     login_as(owner, scope: :property_owner)
 
-    visit new_property_owner_property_path(owner)
+    visit new_property_path
 
     fill_in 'Título', with: ''
     fill_in 'Descrição', with: ''
@@ -72,9 +72,9 @@ feature 'Owner register property' do
   end
 
   scenario 'only logged in' do
-    local = create(:property_location, name: 'Porto de Galinhas')
-    owner = create(:property_owner, email: 'owner@property.com', password: '12345678')
-    visit new_property_owner_property_path(owner)
+    local = create(:property_location)
+    owner = create(:property_owner)
+    visit new_property_path
 
     expect(page).to have_content('You need to sign in or sign up before continuing.')
     expect(current_path).to eq(new_property_owner_session_path)

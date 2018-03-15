@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :price_range do
-    description "MyString"
-    start_date "2018-03-09 23:26:34"
-    end_date "2018-03-09 23:26:34"
-    daily_rate "9.99"
+    description "Natal"
+    start_date "2018-12-20 23:26:34"
+    end_date "2018-12-27 23:26:34"
+    daily_rate "299.99"
     property
   end
 end

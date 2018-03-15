@@ -1,19 +1,15 @@
 class ProposalsController < ApplicationController
-  def new
-    @property = Property.find(params[:property_id])
-    @proposal = Proposal.new
-  end
-
   def create
     proposal_params = params.require(:proposal).permit(
-      :name, :email, :phone, :rent_purpose, :total_guest,
-      :start_date, :end_date, :pet, :smoker, :total_amount,
-      :details, :property_id
-    )
+                        :rent_purpose, :total_guest,:start_date, :end_date,
+                        :pet, :smoker, :total_amount, :details, :property_id,
+                        :user_id
+                      )
 
     @property = Property.find(params[:property_id])
     @proposal = Proposal.new(proposal_params)
     @proposal.property = @property
+    @proposal.user = current_user
 
     if @proposal.save
       flash[:notice] = 'Sua proposta foi enviada com sucesso!'
@@ -25,6 +21,16 @@ class ProposalsController < ApplicationController
   end
 
   def index
-    @proposals = Proposal.where(property_id: params[:property_id])
+    @proposals = current_user.proposals
+
+    #TO-DO -> criar um cenário para padronizar com propriedades
+    # if @proposals.empty?
+    #   flash[:alert] = 'Você não tem propostas.'
+    # end
+  end
+
+  def new
+    @property = Property.find(params[:property_id])
+    @proposal = Proposal.new
   end
 end

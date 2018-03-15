@@ -1,7 +1,7 @@
 class Proposal < ApplicationRecord
   belongs_to :property
-  validates :name, :email, :phone,
-            :rent_purpose, :total_guest,
+  belongs_to :user
+  validates :rent_purpose, :total_guest,
             :start_date, :end_date, presence: true
 
   before_save :calculate_total_amount
