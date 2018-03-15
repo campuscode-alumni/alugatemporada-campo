@@ -3,6 +3,7 @@ require "rails_helper"
 feature 'Owner register a price range in a property' do
   scenario 'successfuly' do
     owner = create(:property_owner)
+    login_as(owner, scope: :property_owner)
     local = PropertyLocation.create(name: 'Campos do Jordão')
     property = Property.create(
                 title: 'Casa de Campo',
@@ -41,8 +42,10 @@ feature 'Owner register a price range in a property' do
   end
 
   scenario 'cant be blank' do
+    owner = create(:property_owner)
+    login_as(owner, scope: :property_owner)
     local = PropertyLocation.create(name: 'Campos do Jordão')
-    property = create(:property)
+    property = create(:property, property_owner: owner)
 
     visit property_path property
     click_on 'Cadastrar uma temporada'
@@ -55,8 +58,10 @@ feature 'Owner register a price range in a property' do
   end
 
   scenario 'and end_date must be greater than start_date' do
+    owner = create(:property_owner)
+    login_as(owner, scope: :property_owner)
     local = PropertyLocation.create(name: 'Campos do Jordão')
-    property = create(:property)
+    property = create(:property, property_owner: owner)
     start_date = DateTime.now
     end_date = DateTime.now - 10.days
 

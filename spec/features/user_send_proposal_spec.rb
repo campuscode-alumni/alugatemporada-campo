@@ -36,6 +36,9 @@ feature 'user send a proposal' do
 
   scenario 'with invalid params' do
     property = create(:property)
+    user = create(:user)
+    login_as(user, scope: :user)
+    
     visit root_path
     click_on 'Ver mais detalhes'
     click_on 'Enviar uma proposta'

@@ -20,10 +20,6 @@
   <li>Aceita fumantes? <%= @property.allow_smokers? ? 'Sim' : 'Não' %></li>
 </ul>
 
-<p><%= link_to 'Voltar', root_path %></p>
-<p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
-<p><%= link_to 'Enviar uma proposta', new_property_proposal_path(@property) %></p>
-
 <h3>Preços por temporada</h3>
 <% @property.price_ranges.each do |price_range| %>
 
@@ -35,7 +31,17 @@
   </ul>
 <% end %>
 
-<h2> Propostas </h2>
+<h3> Propostas </h3>
 <% @property.proposals.each do |proposal| %>
   <%= render partial: "shared/proposal", locals: { proposal: proposal } %>
 <% end %>
+
+<% if property_owner_signed_in? %>
+  <p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
+<% end%>
+
+<% if user_signed_in? %>
+  <p><%= link_to 'Enviar uma proposta', new_property_proposal_path(@property) %></p>
+<% end%>
+
+<p><%= link_to 'Voltar', root_path %></p>
