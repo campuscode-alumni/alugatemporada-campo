@@ -18,10 +18,9 @@ feature 'User can view your proposals' do
     user = create(:user)
     property = create(:property, title: 'Casa em Fortaleza')
     proposal = create(:proposal, user: user, property: property)
-
     login_as(user, scope: :user)
-    visit root_path
 
+    visit root_path
     click_on 'Minhas propostas'
 
     expect(page).to have_css('h1', text: 'Minhas propostas')
@@ -32,5 +31,11 @@ feature 'User can view your proposals' do
     expect(page).to have_content(proposal.total_amount)
     expect(page).to have_link('Sair')
     expect(page).to have_link('Voltar')
+  end
+
+  scenario 'user can see only your proposal' do
+  end
+
+  scenario 'user have not proposal' do
   end
 end
