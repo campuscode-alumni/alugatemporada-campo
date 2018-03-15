@@ -18,3 +18,6 @@ Rails.application.routes.draw do
     resources :proposals, only: [:index]
   end
 end
+
+
+# TO-DO: Precisamos corrigir o relacionamento das propostas para que as mesmas estejam disponíveis para o property_owner visualizar.
