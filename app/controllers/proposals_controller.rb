@@ -23,15 +23,21 @@ class ProposalsController < ApplicationController
   def index
     if property_owner_signed_in?
       @proposals = Proposal.where(property_id: params[:property_id])
+
+      if @proposals.empty?
+        flash[:alert] = 'Seu imóvel ainda não recebeu nenhuma proposta'
+      end
     end
 
     if user_signed_in?
       @proposals = current_user.proposals
+
+      if @proposals.empty?
+        flash[:alert] = 'Você ainda não fez nenhuma proposta para locação'
+      end
     end
 
-    if @proposals.empty?
-      flash[:alert] = 'Você ainda não fez nenhuma proposta para locação'
-    end
+
   end
 
   def new

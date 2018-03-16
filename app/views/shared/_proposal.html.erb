@@ -1,12 +1,12 @@
+<h2>Imóvel: <%= proposal.property.title %></h2>
 <ul>
-  <li>Imóvel: <%= proposal.property.title %></li>
   <li>Localização: <%= proposal.property.property_location.name %></li>
   <li>Proponente: <%= proposal.user.name %></li>
-  <li>email do proponente: <%= proposal.user.email %></li>
+  <li>Email do proponente: <%= proposal.user.email %></li>
   <li>Telefone do proponete: <%= proposal.user.phone%></li>
   <li>Finalidade da proposta: <%= proposal.rent_purpose %></li>
   <li>Quantidade de hospedes: <%= proposal.total_guest %></li>
-  <li>estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
+  <li>Estadia de <%= proposal.start_date.strftime('%d/%m/%Y') %> até <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
   <li><%= proposal.pet ? 'Vou levar meu pet' : 'Não vou levar o meu pet' %></li>
   <li><%= proposal.smoker ? 'Sou fumante' : 'Não sou fumante' %></li>
   <li>Valor total da proposta: <%= number_to_currency(proposal.total_amount, unit: "R$", separator: ",", delimiter: "") %></li>
