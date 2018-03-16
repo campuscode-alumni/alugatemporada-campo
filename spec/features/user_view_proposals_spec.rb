@@ -24,7 +24,7 @@ feature 'User view your proposals' do
     click_on 'Minhas propostas'
 
     expect(page).to have_css('h1', text: 'Minhas propostas')
-    expect(page).to have_css('li', text: property.title)
+    expect(page).to have_css('h2', text: property.title)
     expect(page).to have_css('li', text: property.property_location.name)
     expect(page).to have_css('li', text: format_date(proposal.start_date))
     expect(page).to have_css('li', text: format_date(proposal.end_date))
@@ -59,19 +59,19 @@ feature 'User view your proposals' do
     click_on 'Minhas propostas'
 
     expect(page).to have_css('h1', text: 'Minhas propostas')
-    expect(page).to have_css('li', text: property_1.title)
+    expect(page).to have_css('h2', text: property_1.title)
     expect(page).to have_css('li', text: property_1.property_location.name)
     expect(page).to have_css('li', text: format_date(proposal_1.start_date))
     expect(page).to have_css('li', text: format_date(proposal_1.end_date))
     expect(page).to have_css('li', text: "R$800,00")
 
-    expect(page).to have_css('li', text: property_2.title)
+    expect(page).to have_css('h2', text: property_2.title)
     expect(page).to have_css('li', text: property_2.property_location.name)
     expect(page).to have_css('li', text: format_date(proposal_2.start_date))
     expect(page).to have_css('li', text: format_date(proposal_2.end_date))
     expect(page).to have_css('li', text: "R$800,00")
 
-    expect(page).not_to have_css('li', text: property_3.title)
+    expect(page).not_to have_css('h2', text: property_3.title)
     expect(page).not_to have_css('li', text: property_3.property_location.name)
     expect(page).not_to have_css('li', text: format_date(proposal_3.end_date))
     expect(page).not_to have_css('li', text: "R$1000,00")

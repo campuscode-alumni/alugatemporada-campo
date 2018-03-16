@@ -1,4 +1,3 @@
-<h1>Cadastro de Imóvel</h1>
 <h1><%= @property.title %></h1>
 <h3>Descrição:</h3>
 <p><%= @property.description %></p>
@@ -36,7 +35,7 @@
   <%= render partial: "shared/proposal", locals: { proposal: proposal } %>
 <% end %>
 
-<% if property_owner_signed_in? %>
+<% if @property.property_owner == current_property_owner %>
   <p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
 <% end%>
 
