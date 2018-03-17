@@ -1,0 +1,16 @@
+<h1>Meu perfil</h1>
+<%= form_for current_user, html: { multipart: true } do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :phone, 'Telefone' %>
+    <%= f.text_field :phone %>
+  </div>
+  <div>
+    <%= f.label :photo, 'Minha foto' %>
+    <%= f.file_field :photo %>
+  </div>
+  <%= f.submit 'Enviar' %>
+<% end %>

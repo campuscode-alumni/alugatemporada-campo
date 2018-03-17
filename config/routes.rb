@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :properties, only: [:index, :show, :new, :create]
   end
 
-  scope :users do
+  resources :users, only: [:show, :edit, :update] do
     resources :proposals, only: [:index]
   end
 end

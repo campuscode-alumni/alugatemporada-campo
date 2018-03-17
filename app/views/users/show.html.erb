@@ -1,0 +1,11 @@
+<h1>Meu perfil</h1>
+<%= image_tag current_user.photo.url %>
+<ul>
+  <li>Nome: <%= current_user.name %></li>
+  <li>Email: <%= current_user.email %></li>
+  <li>Telefone: <%= current_user.phone %></li>
+</ul>
+<%= link_to 'Editar perfil', edit_user_path(current_user) %>
+<p>
+  <%= link_to 'Voltar', root_path %>
+</p>

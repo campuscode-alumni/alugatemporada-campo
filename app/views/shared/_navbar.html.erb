@@ -13,9 +13,10 @@
   <% if user_signed_in? %>
     <p>
       <%= "Olá #{current_user.email}" %> |
+      <%= link_to('Meu perfil', user_path(current_user)) %> |
       <%= link_to('Sair', destroy_user_session_path, method: :delete) %>
     </p>
-    <%= link_to 'Minhas propostas', proposals_path %>
+    <%= link_to 'Minhas propostas', user_proposals_path(current_user) %>
   <% elsif !property_owner_signed_in? %>
     <%= link_to('Entrar como usuário', new_user_session_path) %>
   <% end %>

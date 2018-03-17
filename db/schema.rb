@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315003026) do
+ActiveRecord::Schema.define(version: 20180317022743) do
 
   create_table "price_ranges", force: :cascade do |t|
     t.string "description"
@@ -100,6 +100,10 @@ ActiveRecord::Schema.define(version: 20180315003026) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
