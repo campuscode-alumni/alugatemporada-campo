@@ -1,5 +1,11 @@
 <h1>Meu perfil</h1>
-<%= image_tag current_user.photo.url %>
+<div>
+  <% if current_user.photo.file? %>
+    <%= image_tag current_user.photo.url(:medium) %>
+  <% else %>
+    <%= image_tag current_user.photo %>
+  <% end %>
+</div>
 <ul>
   <li>Nome: <%= current_user.name %></li>
   <li>Email: <%= current_user.email %></li>
