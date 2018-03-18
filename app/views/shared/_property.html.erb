@@ -7,7 +7,7 @@
   <%= link_to 'Ver mais detalhes', property_path(property) %>
 </div>
 <div>
-  <% if property_owner_signed_in? %>
+  <% if property.property_owner == current_property_owner %>
     <%= link_to 'Visualizar propostas', property_proposals_path(property) %>
   <% end %>
 </div>

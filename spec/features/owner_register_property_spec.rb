@@ -25,7 +25,6 @@ feature 'Owner register property' do
     click_on 'Enviar'
 
     expect(current_path).to eq property_path(Property.last.id)
-    expect(page).to have_css('h1', text: 'Cadastro de Imóvel')
     expect(page).to have_css('h1', text: 'Casa de Campo')
     expect(page).to have_css('h3', text: 'Descrição')
     expect(page).to have_css('p', text: 'Uma casa especial para férias.')
