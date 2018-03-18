@@ -27,7 +27,7 @@ feature 'User send a proposal' do
     expect(page).to have_css('li', text: 'Finalidade da proposta: Despedida de solteiro')
     expect(page).to have_css('li', text: 'Quantidade de hospedes: 12')
     expect(page).to have_css('li', text: "Estadia de #{start_day} até #{end_day}")
-    expect(page).to have_css('li', text: 'Valor total da proposta: R$2000,00')
+    expect(page).to have_css('li', text: "Valor total da proposta: R$2200,00")
     expect(page).to have_css('li', text: 'Vou levar meu pet')
     expect(page).to have_css('li', text: 'Sou fumante')
     expect(page).to have_css('li', text: 'Maiores detalhes: N/A')
