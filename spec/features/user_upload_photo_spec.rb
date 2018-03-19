@@ -25,7 +25,8 @@ feature 'User upload your photo' do
     user = create(:user)
     login_as(user, scope: :user)
 
-    visit edit_user_path user
+    visit root_path
+    click_on('Meu perfil')
 
     expect(page).to have_xpath("//img[contains(@src,'missing.png')]")
     expect(page).to have_css('h1', text: 'Meu perfil')

@@ -27,6 +27,5 @@ module AlugaTemporada
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    # config.paperclip_defaults = { storage: :fog, fog_credentials: { provider: "Local", local_root: "#{Rails.root}/public"}, fog_directory: "", fog_host: "localhost"}
   end
 end

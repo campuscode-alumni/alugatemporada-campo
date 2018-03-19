@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 20180317022743) do
     t.string "rent_purpose"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "main_photo"
     t.text "description"
     t.string "neighborhood"
     t.boolean "accessibility"
     t.boolean "allow_pets"
     t.boolean "allow_smokers"
     t.integer "rooms"
+    t.string "main_photo"
     t.integer "property_location_id"
     t.integer "property_owner_id"
     t.index ["property_location_id"], name: "index_properties_on_property_location_id"

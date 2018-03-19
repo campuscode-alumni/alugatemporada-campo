@@ -1,10 +1,6 @@
 <h1>Meu perfil</h1>
 <div>
-  <% if current_user.photo.file? %>
-    <%= image_tag current_user.photo.url(:medium) %>
-  <% else %>
-    <%= image_tag current_user.photo %>
-  <% end %>
+  <%= image_tag current_user.photo.url(:medium) %>
 </div>
 <ul>
   <li>Nome: <%= current_user.name %></li>
