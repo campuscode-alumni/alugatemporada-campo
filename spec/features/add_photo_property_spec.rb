@@ -1,4 +1,4 @@
-require ' rails_helper'
+require 'rails_helper'
 
 feature 'owner add a new photo for a property' do
   scenario 'successfuly' do
@@ -9,8 +9,8 @@ feature 'owner add a new photo for a property' do
     visit new_property_path(property)
     click_on property_path(property)
     click_on 'Editar Propriedade'
+    page.attach_file("property_image", Rails.root + join('spec', 'support', 'casa_no_campo.jpg'))
 
-    expect(page).to have_xpath("//img[@src='environ-peeling-kuur.jpg']")
-
+    expect(page).to have_xpath("//img[@src='casa_no_campo.jpg']")
   end
 end
