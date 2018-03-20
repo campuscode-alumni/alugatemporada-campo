@@ -27,3 +27,4 @@
 
 *.un*
 *.sw*
+/public/system/properties/*

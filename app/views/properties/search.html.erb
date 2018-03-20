@@ -1,10 +1,4 @@
 <% @properties.each do |property| %>
-  <div>
-    <h1><%= property.title %></h1>
-    <h3><%= property.main_photo %></h3>
-    <p>Localização: <%= property.property_location.name %></p>
-    <p>Valor base: <%= property.daily_rate %>
-    <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
-  </div>
+  <%= render partial: 'shared/property', locals: {property: property} %>
 <% end %>
 <p><%= link_to 'Voltar', root_path %></p>

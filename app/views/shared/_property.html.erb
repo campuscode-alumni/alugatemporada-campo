@@ -1,6 +1,6 @@
 <div>
   <h1><%= link_to property.title, property_path(property) %></h1>
-  <h3><%= property.main_photo %></h3>
+  <div><%= image_tag property.main_photo.url(:thumb) %></div>
   <p>Localização: <%= property.property_location.name %></p>
   <p>Valor base: <%= property.daily_rate %>
   <p>Número máximo de hospedes: <%= property.maximum_guests %></p>
