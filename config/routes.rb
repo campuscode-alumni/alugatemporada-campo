@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :properties, only: [:show] do
     get 'search', on: :collection
     resources :price_ranges, only: [:create, :new, :show]
-    resources :proposals, only: [:new, :create, :index]
+    resources :proposals, only: [:new, :create, :index] do
+      post 'reject', to: 'proposals#reject'
+    end
   end
 
   scope :property_owners do

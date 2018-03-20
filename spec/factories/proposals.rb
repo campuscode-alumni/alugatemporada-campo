@@ -7,6 +7,7 @@ FactoryBot.define do
     pet true
     smoker false
     details "Detalhes da proposta"
+    status 0
     property
     user
   end

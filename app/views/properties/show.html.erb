@@ -32,7 +32,7 @@
 
 <% if @property.property_owner == current_property_owner %>
   <h3> Propostas </h3>
-  <% @property.proposals.each do |proposal| %>
+  <% @proposals.each do |proposal| %>
     <%= render partial: "shared/proposal", locals: { proposal: proposal } %>
   <% end %>
 

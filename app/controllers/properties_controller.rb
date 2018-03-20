@@ -14,6 +14,7 @@ class PropertiesController < ApplicationController
     if @property.nil?
       redirect_to root_path
     end
+    @proposals = @property.proposals.where.not(status: :rejected)
   end
 
   def new

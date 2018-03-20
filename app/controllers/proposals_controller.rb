@@ -36,12 +36,15 @@ class ProposalsController < ApplicationController
         flash[:alert] = 'Você ainda não fez nenhuma proposta para locação'
       end
     end
-
-
   end
 
   def new
     @property = Property.find(params[:property_id])
     @proposal = Proposal.new
+  end
+
+  def reject
+    Proposal.find(params[:proposal_id]).rejected!
+    redirect_to property_path(params[:property_id])
   end
 end
