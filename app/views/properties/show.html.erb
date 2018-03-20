@@ -30,12 +30,12 @@
   </ul>
 <% end %>
 
-<h3> Propostas </h3>
-<% @property.proposals.each do |proposal| %>
-  <%= render partial: "shared/proposal", locals: { proposal: proposal } %>
-<% end %>
-
 <% if @property.property_owner == current_property_owner %>
+  <h3> Propostas </h3>
+  <% @property.proposals.each do |proposal| %>
+    <%= render partial: "shared/proposal", locals: { proposal: proposal } %>
+  <% end %>
+
   <p><%= link_to 'Cadastrar uma temporada', new_property_price_range_path(@property) %></p>
 <% end%>
 
