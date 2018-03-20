@@ -12,8 +12,8 @@ feature 'Owner register property' do
     fill_in 'Descrição', with: 'Uma casa especial para férias.'
     select local.name, from: 'Localização'
     fill_in 'Bairro', with: 'Vila da Galinha'
-    fill_in 'Foto principal', with: 'foto.jpg'
     fill_in 'Finalidade', with: 'Férias'
+    attach_file('Foto principal', Rails.root + 'spec/support/casa_no_campo.jpg')
     fill_in 'Quantidade de cômodos', with: 6
     check 'Possui acessibilidade'
     check 'Aceita animais'
@@ -30,7 +30,7 @@ feature 'Owner register property' do
     expect(page).to have_css('p', text: 'Uma casa especial para férias.')
     expect(page).to have_css('li', text: "Localização: #{local.name}")
     expect(page).to have_css('li', text: 'Bairro: Vila da Galinha')
-    expect(page).to have_css('li', text: 'Foto principal: foto.jpg')
+    expect(page).to have_xpath("//img[contains(@src, 'casa_no_campo.jpg')]")
     expect(page).to have_css('li', text: 'Cômodos: 6')
     expect(page).to have_css('li', text: 'Finalidade: Férias')
     expect(page).to have_css('li', text: 'Máximo de pessoas: 12')
@@ -55,7 +55,6 @@ feature 'Owner register property' do
     fill_in 'Descrição', with: ''
     select local.name, from: 'Localização'
     fill_in 'Bairro', with: ''
-    fill_in 'Foto principal', with: ''
     fill_in 'Finalidade', with: ''
     fill_in 'Quantidade de cômodos', with: ''
     check 'Possui acessibilidade'
@@ -71,8 +70,6 @@ feature 'Owner register property' do
   end
 
   scenario 'only logged in' do
-    local = create(:property_location)
-    owner = create(:property_owner)
     visit new_property_path
 
     expect(page).to have_content('You need to sign in or sign up before continuing.')

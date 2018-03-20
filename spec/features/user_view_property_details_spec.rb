@@ -2,25 +2,7 @@ require 'rails_helper'
 
 feature 'User view property details' do
   scenario 'successfuly' do
-    owner = create(:property_owner)
-    local = PropertyLocation.create(name: 'Santos')
-    property = Property.create(
-                title: 'Casa de Campo',
-                description: 'Uma linda casa em Campos de Jordão',
-                property_location: local,
-                neighborhood: 'Campos',
-                rent_purpose: 'Férias',
-                main_photo: 'foto.jpg',
-                rooms: 5,
-                maximum_guests: 15,
-                minimum_rent: 3,
-                maximum_rent: 15,
-                daily_rate: 200.0,
-                accessibility: true,
-                allow_pets: false,
-                allow_smokers: true,
-                property_owner: owner
-              )
+    property = create(:property)
 
     visit property_path(property)
 
@@ -30,7 +12,7 @@ feature 'User view property details' do
     expect(page).to have_css('li', text: "Localização: #{property.property_location.name}")
     expect(page).to have_css('li', text: "Bairro: #{property.neighborhood}")
     expect(page).to have_css('li', text: "Finalidade: #{property.rent_purpose}")
-    expect(page).to have_css('li', text: "Foto principal: #{property.main_photo}")
+    expect(page).to have_xpath("//img[contains(@src, 'casa_no_campo.jpg')]")
     expect(page).to have_css('li', text: "Cômodos: #{property.rooms}")
     expect(page).to have_css('li', text: "Máximo de pessoas: #{property.maximum_guests}")
     expect(page).to have_css('li', text: "Mínimo de dias: #{property.minimum_rent}")
