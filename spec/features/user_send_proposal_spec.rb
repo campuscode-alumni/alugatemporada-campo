@@ -31,7 +31,7 @@ feature 'User send a proposal' do
     expect(page).to have_css('li', text: 'Vou levar meu pet')
     expect(page).to have_css('li', text: 'Sou fumante')
     expect(page).to have_css('li', text: 'Maiores detalhes: N/A')
-    expect(current_path).to eq(property_path(property))
+    expect(current_path).to eq(user_proposals_path(user))
   end
 
   scenario 'with invalid params' do

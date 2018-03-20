@@ -13,7 +13,7 @@ class ProposalsController < ApplicationController
 
     if @proposal.save
       flash[:notice] = 'Sua proposta foi enviada com sucesso!'
-      redirect_to property_path(@property)
+      redirect_to user_proposals_path(current_user)
     else
       flash[:errors] = 'Não foi possível envia sua proposta!'
       render :new
