@@ -4,6 +4,7 @@ class Proposal < ApplicationRecord
   validates :rent_purpose, :total_guest,
             :start_date, :end_date, presence: true
 
+  enum status: [:pending, :accepted, :rejected]
   before_save :calculate_total_amount
 
   private
