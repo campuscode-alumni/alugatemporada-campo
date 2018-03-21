@@ -8,6 +8,7 @@ class Proposal < ApplicationRecord
   before_save :calculate_total_amount
 
   private
+
   def calculate_total_amount
     sum = 0
     days = (start_date..end_date).to_a.length

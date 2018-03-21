@@ -12,3 +12,6 @@
   <li>Valor total da proposta: <%= number_to_currency(proposal.total_amount, unit: "R$", separator: ",", delimiter: "") %></li>
   <li>Maiores detalhes: <%= proposal.details %></li>
 </ul>
+
+<%= link_to 'Aceitar', property_proposal_accepted_path(proposal.property, proposal),
+              method: :post %>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :properties, only: [:show] do
     get 'search', on: :collection
     resources :price_ranges, only: [:create, :new, :show]
-    resources :proposals, only: [:new, :create, :index]
+    resources :proposals, only: [:new, :create, :index] do
+      post 'accepted', to: 'proposals#accepted'
+    end
   end
 
   scope :property_owners do
@@ -18,6 +20,3 @@ Rails.application.routes.draw do
     resources :proposals, only: [:index]
   end
 end
-
-
-# TO-DO: Precisamos corrigir o relacionamento das propostas para que as mesmas estejam disponíveis para o property_owner visualizar.

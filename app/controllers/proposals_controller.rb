@@ -1,4 +1,12 @@
 class ProposalsController < ApplicationController
+  def accepted
+    proposal = Proposal.find_by(id: params[:proposal_id])
+    proposal.accepted!
+    flash[:notice] = 'Proposta aceita com sucesso!'
+
+    redirect_to property_path(proposal.property)
+  end
+
   def create
     proposal_params = params.require(:proposal).permit(
                         :rent_purpose, :total_guest,:start_date, :end_date,
@@ -36,8 +44,6 @@ class ProposalsController < ApplicationController
         flash[:alert] = 'Você ainda não fez nenhuma proposta para locação'
       end
     end
-
-
   end
 
   def new
