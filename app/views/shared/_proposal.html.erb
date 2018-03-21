@@ -13,5 +13,7 @@
   <li>Maiores detalhes: <%= proposal.details %></li>
 </ul>
 
-<%= link_to 'Aceitar', property_proposal_accepted_path(proposal.property, proposal),
-              method: :post %>
+<div id="proposal_<%= proposal.id %>">
+  <%= link_to 'Aceitar', property_proposal_accepted_path(proposal.property, proposal), method: :post %>
+  <%= link_to 'Rejeitar proposta', property_proposal_reject_path(proposal.property, proposal), method: :post %>
+</div>

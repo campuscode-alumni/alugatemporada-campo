@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :price_ranges, only: [:create, :new, :show]
     resources :proposals, only: [:new, :create, :index] do
       post 'accepted', to: 'proposals#accepted'
+      post 'reject', to: 'proposals#reject'
     end
   end
 

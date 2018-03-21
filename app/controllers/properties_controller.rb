@@ -13,6 +13,8 @@ class PropertiesController < ApplicationController
     @property = Property.find_by(id: params[:id])
     if @property.nil?
       redirect_to root_path
+    else
+      @proposals = @property.proposals.where.not(status: :rejected)
     end
   end
 

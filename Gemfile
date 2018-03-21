@@ -21,7 +21,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'capybara'
   gem 'factory_bot_rails'
+  gem 'rubocop', require: false
 end
+
+gem 'simplecov', require: false, group: :test
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
