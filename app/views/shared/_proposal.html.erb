@@ -12,6 +12,6 @@
   <li>Valor total da proposta: <%= number_to_currency(proposal.total_amount, unit: "R$", separator: ",", delimiter: "") %></li>
   <li>Maiores detalhes: <%= proposal.details %></li>
 </ul>
-<div>
+<div id="proposal_<%= proposal.id %>">
   <%= link_to 'Rejeitar proposta', property_proposal_reject_path(proposal.property, proposal), method: :post %>
 </div>
